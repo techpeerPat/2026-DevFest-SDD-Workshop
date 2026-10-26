@@ -1,0 +1,6 @@
+[
+  {"id": "KB-01", "title": "Reset your password", "keywords": ["password", "login", "locked", "reset", "sign in"], "answer": "Use 'Forgot password' on the sign-in page. The reset link expires after 30 minutes."},
+  {"id": "KB-02", "title": "Export data to CSV", "keywords": ["export", "csv", "download", "report"], "answer": "Open Reports, choose a date range, then select Export > CSV. Exports over 100k rows are emailed."},
+  {"id": "KB-03", "title": "App crashes on launch", "keywords": ["crash", "launch", "startup", "freeze", "error"], "answer": "Update to the latest version, then clear the app cache under Settings > Storage. If it persists, collect logs and escalate."},
+  {"id": "KB-04", "title": "Connect an integration", "keywords": ["integration", "api", "webhook", "connect", "token"], "answer": "Create an API token under Settings > Developers and paste it into the integration. Tokens can be rotated at any time."}
+]

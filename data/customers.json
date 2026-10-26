@@ -1,0 +1,8 @@
+[
+  {"id": "C-1001", "name": "Maya Ortiz", "plan": "Pro", "monthly_price": 29, "status": "active", "last_invoice_amount": 58, "email": "maya@example.com"},
+  {"id": "C-1002", "name": "Devon Reed", "plan": "Team", "monthly_price": 99, "status": "active", "last_invoice_amount": 99, "email": "devon@example.com"},
+  {"id": "C-1003", "name": "Priya Nair", "plan": "Basic", "monthly_price": 9, "status": "active", "last_invoice_amount": 9, "email": "priya@example.com"},
+  {"id": "C-1004", "name": "Samuel Ito", "plan": "Pro", "monthly_price": 29, "status": "active", "last_invoice_amount": 29, "email": "samuel@example.com"},
+  {"id": "C-1005", "name": "Lena Fischer", "plan": "Pro", "monthly_price": 29, "status": "active", "last_invoice_amount": 49, "email": "lena@example.com"},
+  {"id": "C-1006", "name": "Omar Haddad", "plan": "Basic", "monthly_price": 9, "status": "suspended", "last_invoice_amount": 9, "email": "omar@example.com"}
+]
