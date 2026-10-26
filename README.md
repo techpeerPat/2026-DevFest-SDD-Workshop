@@ -21,7 +21,7 @@ A working answer key lives on the `answer-key` branch. Please do not open it unt
 
 ```bash
 # 1. Get the kit
-git clone https://github.com/techpeer/2026-DevFest-SDD-Workshop.git triage-workshop
+git clone https://github.com/techpeerPat/2026-DevFest-SDD-Workshop.git triage-workshop
 cd triage-workshop
 
 # 2. Python environment (3.10+)
