@@ -37,15 +37,16 @@ curl -fsSL https://antigravity.google/cli/install.sh | bash
 # open a NEW terminal, re-activate the venv, then:
 agy --version
 
-# 5. The Elephant and Goldfish skills (project-level)
-mkdir -p .agents/skills
-git clone https://github.com/techpeerPat/elephant-goldfish-skills.git /tmp/egs
-cp -R /tmp/egs/.agents/skills/* .agents/skills/
-rm -rf /tmp/egs
+# 5. The Elephant and Goldfish skills
+#    Downloads https://github.com/techpeerPat/elephant-goldfish-skills and copies the
+#    seven skills into .agents/skills/ (works on macOS, Linux and Windows; needs git)
+python install_skills.py
 
 # 6. Verify
 python check_setup.py
 ```
+
+Check the skills loaded: start `agy` from this folder and type `/ele`. You should see `/elephant-grow` and `/elephant-teach`.
 
 The first run of `agy` opens a browser to sign in with a Google account.
 
