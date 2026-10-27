@@ -181,10 +181,10 @@ Goal: turn the conversation into `docs/DESIGN.md`. Stay in the same session so t
 Prompt:
 
 ```
-/elephant-teach Write the design document to docs/DESIGN.md from our discussion. Use these Markdown headings: Problem, Technical Plan, Alternatives, Detailed Implementation, Evaluation Criteria, and optionally Open Questions. In Detailed Implementation, list every file to create or change and why, including support_triage/__init__.py (imports agent), support_triage/agent.py (Google ADK Agent specialists plus root_agent with sub_agents) and tests/test_tools.py. Make every Evaluation Criterion checkable by a test or by a message typed into adk web.
+/elephant-teach Write the design document to docs/DESIGN.md from our discussion. In Detailed Implementation, list every file to create or change, including support_triage/__init__.py (imports agent), support_triage/agent.py (Google ADK Agent specialists plus root_agent with sub_agents) and tests/test_tools.py.
 ```
 
-The prompt names the five required sections, so check the file has them: Problem, Technical Plan, Alternatives, Detailed Implementation, Evaluation Criteria. Open Questions is optional. Then check three things yourself:
+Check the file has the five required sections: Problem, Technical Plan, Alternatives, Detailed Implementation, Evaluation Criteria. Open Questions is optional. Then check three things yourself:
 
 - Detailed Implementation lists every file to create, including `support_triage/__init__.py` and `support_triage/agent.py`.
 - It says `agent.py` defines a `root_agent` with `sub_agents` using Google ADK. If not, add it before Lab 3.
