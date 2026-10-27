@@ -1,6 +1,6 @@
 """Preflight check for the spec-driven multi-agent workshop. Run: python check_setup.py
 
-Checks Python, ADK, the agy CLI, git, and (optionally) makes ONE tiny Gemini call.
+Checks Python, ADK, the agy CLI, git, the installed skills, and (optionally) makes ONE tiny Gemini call.
 The Gemini call uses 1 request of your free daily quota. Skip it with --no-model.
 """
 import os
@@ -39,6 +39,10 @@ except Exception:
 report(shutil.which("adk") is not None, "adk command on PATH", "Activate your venv; the adk command comes with google-adk.")
 report(shutil.which("agy") is not None, "agy (Antigravity CLI) on PATH", "Install from Google's Antigravity CLI page, open a NEW terminal, then run: agy --version")
 report(shutil.which("git") is not None, "git installed", "Install git.")
+SKILLS = ["elephant-grow", "elephant-teach", "goldfish-understand", "goldfish-critic", "goldfish-ready", "implement-design", "adversary-review"]
+skills_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".agents", "skills")
+missing = [s for s in SKILLS if not os.path.isfile(os.path.join(skills_dir, s, "SKILL.md"))]
+report(not missing, "7 Elephant/Goldfish skills in .agents/skills/" if not missing else f"skills installed (missing: {', '.join(missing)})", "Run: python install_skills.py")
 report(bool(os.environ.get("GOOGLE_API_KEY")), "GOOGLE_API_KEY is set", "Copy .env.example to .env and paste your AI Studio key.")
 
 if "--no-model" not in sys.argv and os.environ.get("GOOGLE_API_KEY"):
