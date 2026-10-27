@@ -18,13 +18,13 @@ A 90-minute, hands-on workshop where each participant builds a three-specialist 
 | Need | Requirement | Cost |
 | --- | --- | --- |
 | Laptop | macOS, Windows 10+ with PowerShell, or 64-bit Linux (glibc 2.28+). No GPU. Admin rights help but the CLI installs per-user. | Own device |
-| Python | 3.10 or newer, with `venv` | Free |
+| Python | 3.11 or newer, with `venv` (required by the pinned `google-adk`) | Free |
 | Git and a terminal | Git must be installed (the skills are cloned from GitHub) | Free |
 | Browser | Any, for the one-time Google sign-in and the ADK web UI on localhost | Free |
 | Google account | A personal Google account for Antigravity sign-in. Work or school accounts may be restricted: check with a test account first. | Free |
 | Antigravity CLI (`agy`) | Installed from Google's one-line script; free Individual tier. Participants pick one model with `/model` and use it for all labs. Claude Code is a supported alternative (file placement tested, live run not yet). | Free, limited quota |
 | Gemini API key | Created at aistudio.google.com, no billing needed | Free, limited quota |
-| Python packages | `google-adk`, `pytest`, installed with pip | Free |
+| Python packages | `google-adk` (pinned) and `pytest`, installed by `pip install -r requirements.txt` in the setup step | Free |
 | Elephant and Goldfish skills | Downloaded from github.com/techpeerPat/elephant-goldfish-skills by `python install_skills.py`, into the project folder only: `.agents/skills/` (agy) or `.claude/skills/` (Claude Code, with `--agent claude`). Never global. | Free |
 | Network | Outbound HTTPS to Google (sign-in, Antigravity, Gemini API), GitHub and PyPI | Venue Wi-Fi |
 

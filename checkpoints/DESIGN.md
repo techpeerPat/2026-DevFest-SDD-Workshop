@@ -36,7 +36,7 @@ Tool contracts:
 
 ## Evaluation Criteria
 
-1. `python tests/test_tools.py` passes with no API key set.
+1. `python -m pytest tests -q` passes with no API key set.
 2. `adk web` lists `support_triage` and the trace shows `triage_router` transferring each of these messages to the named agent: "I was charged twice, my email is maya@example.com" to `billing_agent`; "My app crashes when I launch it" to `technical_agent`; "Your whole service is down and we lost data" to `escalation_agent`.
 3. For maya@example.com the billing answer states an overcharge of 29.
 4. A message with no matching article ends with a new line in `tickets/tickets.jsonl`.

@@ -28,7 +28,7 @@ def load_dotenv_if_present() -> None:
 
 
 load_dotenv_if_present()
-report(sys.version_info >= (3, 10), f"Python {sys.version.split()[0]} (need 3.10+)", "Install Python 3.10 or newer.")
+report(sys.version_info >= (3, 11), f"Python {sys.version.split()[0]} (need 3.11+)", "Install Python 3.11 or newer (Google ADK needs it).")
 
 try:
     import google.adk  # noqa: F401
