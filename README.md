@@ -61,4 +61,4 @@ Work only inside your clone. Put your design doc at `docs/DESIGN.md`. The agent 
 
 ## Licence
 
-Workshop materials: add a licence before publishing (see the organizer notes).
+MIT. See [LICENSE](LICENSE).
