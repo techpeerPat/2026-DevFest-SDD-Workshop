@@ -1,6 +1,6 @@
 # Slide outline and speaker notes
 
-24 slides, built on the DevFest 2026 template. Times match the lab guide.
+26 slides, built on the DevFest 2026 template. Times match the lab guide.
 
 | # | Slide | Content | Speaker notes |
 | --- | --- | --- | --- |
@@ -12,19 +12,21 @@
 | 6 | Setup 4 of 4: Run the preflight | `python check_setup.py`; every line must say `[ ok ]`; expected output shown. | Everyone should see "All set." Common fails: venv not activated, terminal not reopened after installing `agy`, wrong key, 429 from free-tier quota, skills not installed. |
 | 7 | What you leave with | A gated design doc; a running agent team; a loop you can reuse. Nothing is deployed. | This is a discipline workshop that happens to produce an ADK app. Model calls still go to the free Gemini API over the internet; agents, tools, data and UI are local. |
 | 8 | Chatting your way to code fails quietly | The usual loop (chat, code, surprise, patch) versus the spec-first loop (decide, write down, gate, build, attack). | Two minutes. When the document is wrong you edit a paragraph; when code is wrong you edit a system. Ask who has been bitten by an agent that quietly widened scope. |
-| 9 | Rule quote | Spec first. Then agents. No code until the design passes the gate. | The rule for the whole session. Point back here if anyone starts coding early. |
-| 10 | Divider 01: The plan | Seven skills, the agenda and the system we build. | |
-| 11 | Seven skills, one loop | Table of the seven skills, marked Hands-on or Demo. Steps 3 to 5 need a fresh session. | Emphasise the fresh-context rule. Steps 3 and 4 are shown on the projector; participants run only step 5 in Lab 3 to protect free-tier quota. |
-| 12 | The next 90 minutes | Agenda table with clock times and the skill used in each segment. | Every lab has a hard stop and a checkpoint file. Put a visible countdown on a second screen. |
-| 13 | What we build | `triage_router` over `billing_agent` (lookup_customer, check_invoice), `technical_agent` (search_kb) and `escalation_agent` (create_ticket), reading `customers.json`, `kb.json` and writing `tickets.jsonl`. | Walk top to bottom. Each specialist's description is the routing rule. Everything runs on localhost. |
-| 14 | ADK in five ideas | Agent = name, model, instruction; tool = plain Python function; `sub_agents`; `root_agent`; `adk web`. Code sample. | Ten-minute demo from the reference solution. A tool's docstring is what the model reads. Show the trace panel; Lab 4 relies on it. Confirm the model name before the event. |
-| 15 | Divider 02: Five timed labs | From a blank folder to a reviewed, running app. | |
-| 16 | Lab 1: Design with no code | 0:18, 15 min, `/elephant-grow`. Five things to settle, with the prompt. Hard stop 0:33. | If anyone is writing code, stop them. The five bullets carry into Lab 2. |
-| 17 | Lab 2: Write the design doc | 0:33, 10 min, `/elephant-teach`. Five required sections; check every file is listed and every criterion is checkable. Hard stop 0:43. | Stay in the same session as Lab 1. Commit the file afterwards. |
-| 18 | Lab 3: The readiness gate | 0:43, 10 min, `/goldfish-ready docs/DESIGN.md` in a fresh session. | Run the five-minute demo first: goldfish-understand, then goldfish-critic. Participants run only goldfish-ready. Never `/clear` the old session. |
-| 19 | Lab 4: Build it and run it | 0:53, 25 min, `/implement-design`. Tests, `adk web`, three messages with expected routes. Hard stop 1:18. | Longest lab. Decide whether the document or the code was wrong. Snags: `adk web` started inside `support_triage/`, 429 from messaging too fast, wrong model name (404). |
-| 20 | Lab 5: Hostile review | 1:18, 10 min, `/adversary-review support_triage/ tests/` in a fresh session. Fix the two worst findings. | Ask two or three people to read their top finding aloud. Which could the design doc have prevented? |
-| 21 | Divider 03: Safety nets and wrap-up | Checkpoints, homework and what comes next. | |
-| 22 | Behind? Use the checkpoint | Table of hard stops and what to do at each. | Nobody waits for stragglers. Out of Antigravity quota: use the checkpoint file and follow along on screen. |
-| 23 | Homework | Run `/goldfish-understand` and `/goldfish-critic` on your own doc; add a fourth specialist using all seven steps; compare with the reference solution. | Point to the kit repo's `answer-key` branch and the skills repo for the design-document specification. |
-| 24 | Closing question | What did the document catch that the code never would have? | Take answers from two people, then move to the homework. |
+| 9 | Spec-driven development in one idea | The written spec is the contract; code is what you build from it. Decide first, build only what the spec says, review the code against the spec. In this workshop `docs/DESIGN.md` is the spec; wrong result means fix the spec, then rebuild. | Keep to two minutes. The document is the source of truth, not the chat. When something is wrong, decide whether the document or the code was wrong, fix the document if needed, and rebuild. |
+| 10 | The Elephant and the Goldfish | Elephant never forgets: holds the whole conversation, explores and challenges, writes the design doc (`/elephant-grow`, `/elephant-teach`). Goldfish remembers nothing: sees only the document, finds gaps, says Ready or Not ready (`/goldfish-understand`, `/goldfish-critic`, `/goldfish-ready`). | The Goldfish only sees what is written down, which is why steps 3 to 5 need a fresh session. If a goldfish can understand it and say Ready, a stranger or a coding agent can build it correctly. Implementation and review also work from the document. |
+| 11 | Rule quote | Spec first. Then agents. No code until the design passes the gate. | The rule for the whole session. Point back here if anyone starts coding early. |
+| 12 | Divider 01: The plan | Seven skills, the agenda and the system we build. | |
+| 13 | Seven skills, one loop | Table of the seven skills, marked Hands-on or Demo. Steps 3 to 5 need a fresh session. | Emphasise the fresh-context rule. Steps 3 and 4 are shown on the projector; participants run only step 5 in Lab 3 to protect free-tier quota. |
+| 14 | The next 90 minutes | Agenda table with clock times and the skill used in each segment. | Every lab has a hard stop and a checkpoint file. Put a visible countdown on a second screen. |
+| 15 | What we build | `triage_router` over `billing_agent` (lookup_customer, check_invoice), `technical_agent` (search_kb) and `escalation_agent` (create_ticket), reading `customers.json`, `kb.json` and writing `tickets.jsonl`. | Walk top to bottom. Each specialist's description is the routing rule. Everything runs on localhost. |
+| 16 | ADK in five ideas | Agent = name, model, instruction; tool = plain Python function; `sub_agents`; `root_agent`; `adk web`. Code sample. | Ten-minute demo from the reference solution. A tool's docstring is what the model reads. Show the trace panel; Lab 4 relies on it. Confirm the model name before the event. |
+| 17 | Divider 02: Five timed labs | From a blank folder to a reviewed, running app. | |
+| 18 | Lab 1: Design with no code | 0:18, 15 min, `/elephant-grow`. Five things to settle, with the prompt. Hard stop 0:33. | If anyone is writing code, stop them. The five bullets carry into Lab 2. |
+| 19 | Lab 2: Write the design doc | 0:33, 10 min, `/elephant-teach`. Five required sections; check every file is listed and every criterion is checkable. Hard stop 0:43. | Stay in the same session as Lab 1. Commit the file afterwards. |
+| 20 | Lab 3: The readiness gate | 0:43, 10 min, `/goldfish-ready docs/DESIGN.md` in a fresh session. | Run the five-minute demo first: goldfish-understand, then goldfish-critic. Participants run only goldfish-ready. Never `/clear` the old session. |
+| 21 | Lab 4: Build it and run it | 0:53, 25 min, `/implement-design`. Tests, `adk web`, three messages with expected routes. Hard stop 1:18. | Longest lab. Decide whether the document or the code was wrong. Snags: `adk web` started inside `support_triage/`, 429 from messaging too fast, wrong model name (404). |
+| 22 | Lab 5: Hostile review | 1:18, 10 min, `/adversary-review support_triage/ tests/` in a fresh session. Fix the two worst findings. | Ask two or three people to read their top finding aloud. Which could the design doc have prevented? |
+| 23 | Divider 03: Safety nets and wrap-up | Checkpoints, homework and what comes next. | |
+| 24 | Behind? Use the checkpoint | Table of hard stops and what to do at each. | Nobody waits for stragglers. Out of Antigravity quota: use the checkpoint file and follow along on screen. |
+| 25 | Homework | Run `/goldfish-understand` and `/goldfish-critic` on your own doc; add a fourth specialist using all seven steps; compare with the reference solution. | Point to the kit repo's `answer-key` branch and the skills repo for the design-document specification. |
+| 26 | Closing question | What did the document catch that the code never would have? | Take answers from two people, then move to the homework. |
