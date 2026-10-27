@@ -56,9 +56,9 @@ The biggest risk is free-tier quota, not content. Run the whole workshop yoursel
 
 Participants finish setup before the day, in about 10 minutes, from two public GitHub repos: the workshop kit (https://github.com/techpeerPat/2026-DevFest-SDD-Workshop) and the skills (https://github.com/techpeerPat/elephant-goldfish-skills). The kit's installer downloads the skills for them. Run a 15-minute "tech desk" before the start time for anyone whose preflight fails.
 
-1. Install the prerequisites: Python 3.10+ and git.
+1. Install the prerequisites: Python 3.11+ and git.
 2. Clone the kit into a folder named `triage-workshop` (it has no answer key; that lives on a separate branch).
-3. Create and activate a virtual environment, then `pip install -r requirements.txt`.
+3. Create and activate a virtual environment, then `pip install -r requirements.txt`. This installs Google ADK (`google-adk`, pinned) and `pytest`; you do not install ADK separately.
 4. Create a free Gemini API key at aistudio.google.com and paste it into `.env` (copied from `.env.example`).
 5. Install the Antigravity CLI, then run `agy` once and finish the browser sign-in.
 6. Download and install the skills with `python install_skills.py`. It clones the skills repo and copies the seven skills into `.agents/skills/`, on macOS, Linux and Windows.
@@ -161,7 +161,7 @@ Goal: leave with decisions, not code. The skill refuses to write code and challe
 Prompt:
 
 ```
-/elephant-grow I want a local-only customer support triage system built with Google ADK in Python. A coordinator agent routes each message to a billing, technical or escalation specialist. Data is in data/customers.json and data/kb.json, tickets go to a local file, and nothing is deployed. Ask at most 5 questions at a time. Challenge my routing rules, my tool inputs and outputs, and how we will know it works.
+/elephant-grow I want a local-only customer support triage system built with Google ADK (the google-adk package, already installed) in Python. A coordinator agent named triage_router routes each message to a billing, technical or escalation specialist, using ADK sub_agents. The code lives in a package called support_triage/ in the project root and exposes root_agent from agent.py, so it runs with adk web. Data is in data/customers.json and data/kb.json, tickets go to a local file, and nothing is deployed. Ask at most 5 questions at a time. Challenge my routing rules, my tool inputs and outputs, and how we will know it works.
 ```
 
 Settle these five things before you stop. If the agent has not raised one, raise it yourself.
@@ -181,12 +181,13 @@ Goal: turn the conversation into `docs/DESIGN.md`. Stay in the same session so t
 Prompt:
 
 ```
-/elephant-teach Write the design document to docs/DESIGN.md from our discussion.
+/elephant-teach Write the design document to docs/DESIGN.md from our discussion. Use these Markdown headings: Problem, Technical Plan, Alternatives, Detailed Implementation, Evaluation Criteria, and optionally Open Questions. In Detailed Implementation, list every file to create or change and why, including support_triage/__init__.py (imports agent), support_triage/agent.py (Google ADK Agent specialists plus root_agent with sub_agents) and tests/test_tools.py. Make every Evaluation Criterion checkable by a test or by a message typed into adk web.
 ```
 
-Check the file has the five required sections: Problem, Technical Plan, Alternatives, Detailed Implementation, Evaluation Criteria. Open Questions is optional. Then check two things yourself:
+The prompt names the five required sections, so check the file has them: Problem, Technical Plan, Alternatives, Detailed Implementation, Evaluation Criteria. Open Questions is optional. Then check three things yourself:
 
 - Detailed Implementation lists every file to create, including `support_triage/__init__.py` and `support_triage/agent.py`.
+- It says `agent.py` defines a `root_agent` with `sub_agents` using Google ADK. If not, add it before Lab 3.
 - Each Evaluation Criterion is something a person or a test can check, not an adjective.
 
 Commit it: `git add -A && git commit -m "design doc"`. Hard stop at 0:43. No file? Copy `checkpoints/DESIGN.md` to `docs/DESIGN.md`.
@@ -213,10 +214,10 @@ Goal: a running multi-agent app that matches the document and nothing else.
 1. In the original session or a new one, run:
 
 ```
-/implement-design docs/DESIGN.md
+/implement-design docs/DESIGN.md Build with Google ADK (google-adk is already installed in the venv). Create only the files the document lists. Before you finish, run python -m pytest tests -q and show the result.
 ```
 
-2. Run the offline tests the agent wrote (no API key needed): `python tests/test_tools.py` or `python -m pytest tests -q`.
+2. Run the offline tests the agent wrote (no API key needed): `python -m pytest tests -q`.
 3. From the **project root** (the folder that contains `support_triage/`), start the UI: `adk web`. Open http://localhost:8000 and pick `support_triage` at the top left.
 4. Send these three messages, a few seconds apart, and open the trace for each:
 

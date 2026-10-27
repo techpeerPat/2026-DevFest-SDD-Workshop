@@ -24,7 +24,7 @@ A working answer key lives on the `answer-key` branch. Please do not open it unt
 git clone https://github.com/techpeerPat/2026-DevFest-SDD-Workshop.git triage-workshop
 cd triage-workshop
 
-# 2. Python environment (3.10+)
+# 2. Python environment (3.11+). The pip line installs Google ADK (google-adk) and pytest
 python3 -m venv .venv
 source .venv/bin/activate           # Windows PowerShell: .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
