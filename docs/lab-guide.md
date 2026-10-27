@@ -103,9 +103,9 @@ The goal is that nobody is surprised by the code the coding agent writes in Lab 
 
 1. **An agent is a name, a model, an instruction and optional tools.** `from google.adk.agents import Agent`.
 2. **A tool is a plain Python function.** ADK reads its name, type hints and docstring to tell the model how to call it. A vague docstring means a badly used tool.
-3. ****** makes a team.** The parent can transfer the conversation to a child. The model decides who, using each child's `description`, so descriptions are routing rules.
-4. **A package is a folder with ******** and ********.** `agent.py` must expose a variable named `root_agent`. `__init__.py` does `from . import agent`.
-5. ****** runs from the parent folder** of the agent package, serves a chat UI on http://localhost:8000, and shows a trace of every transfer and tool call. `adk run support_triage` is the terminal version. ADK Web is for development, not production.
+3. **`sub_agents=[...]` makes a team.** The parent can transfer the conversation to a child. The model decides who, using each child's `description`, so descriptions are routing rules.
+4. **A package is a folder with `__init__.py` and `agent.py`.** `agent.py` must expose a variable named `root_agent`. `__init__.py` does `from . import agent`.
+5. **`adk web` runs from the parent folder** of the agent package, serves a chat UI on http://localhost:8000, and shows a trace of every transfer and tool call. `adk run support_triage` is the terminal version. ADK Web is for development, not production.
 
 Show the trace view. It is the proof, in Lab 4, that the router really handed off to a specialist.
 
@@ -187,7 +187,7 @@ Goal: find out whether a reader with no memory of your conversation could build 
 /goldfish-ready docs/DESIGN.md
 ```
 
-1. The verdict is "Ready" or "Not ready". If "Not ready", read the reasons, go back to your original session, fix the document (ask `/elephant-teach` to update the specific sections), and run the gate once more. One loop only.
+3. The verdict is "Ready" or "Not ready". If "Not ready", read the reasons, go back to your original session, fix the document (ask `/elephant-teach` to update the specific sections), and run the gate once more. One loop only.
 
 What to notice: every gap it lists is a bug you would have found an hour into coding.
 
@@ -201,9 +201,9 @@ Goal: a running multi-agent app that matches the document and nothing else.
 /implement-design docs/DESIGN.md
 ```
 
-1. Run the offline tests the agent wrote (no API key needed): `python tests/test_tools.py` or `python -m pytest tests -q`.
-2. From the **project root** (the folder that contains `support_triage/`), start the UI: `adk web`. Open http://localhost:8000 and pick `support_triage` at the top left.
-3. Send these three messages, a few seconds apart, and open the trace for each:
+2. Run the offline tests the agent wrote (no API key needed): `python tests/test_tools.py` or `python -m pytest tests -q`.
+3. From the **project root** (the folder that contains `support_triage/`), start the UI: `adk web`. Open http://localhost:8000 and pick `support_triage` at the top left.
+4. Send these three messages, a few seconds apart, and open the trace for each:
 
 | Message | Expected route | Expected result |
 | --- | --- | --- |
@@ -211,7 +211,7 @@ Goal: a running multi-agent app that matches the document and nothing else.
 | My app crashes when I launch it | `technical_agent` | Quotes the crash article |
 | Your whole service is down and we lost data | `escalation_agent` | Returns a ticket id; a line appears in `tickets/tickets.jsonl` |
 
-1. Commit: `git add -A && git commit -m "implementation"`.
+5. Commit: `git add -A && git commit -m "implementation"`.
 
 **The spec-driven rule.** If something is wrong, do not ask the agent to "just fix it" in chat. Decide whether the document was wrong or the code was wrong. If the document was wrong, edit the document, then re-run `/implement-design`. If the code ignored the document, say so and have it conform. That habit is the point of the day.
 
@@ -229,8 +229,8 @@ Goal: see what a hostile reviewer finds in code that already "works".
 /adversary-review support_triage/ tests/
 ```
 
-1. The review returns numbered findings and ends with a verdict, either "APPROVED" or blocked. You will not reach "APPROVED" in ten minutes, and that is fine. Pick the **two** findings you consider most serious and fix them, either by hand or by naming them to the agent.
-2. Write one sentence in `docs/DESIGN.md` under Open Questions for any finding you chose not to fix.
+2. The review returns numbered findings and ends with a verdict, either "APPROVED" or blocked. You will not reach "APPROVED" in ten minutes, and that is fine. Pick the **two** findings you consider most serious and fix them, either by hand or by naming them to the agent.
+3. Write one sentence in `docs/DESIGN.md` under Open Questions for any finding you chose not to fix.
 
 **Wrap (1:28, 2 min).** Ask the room: what did the document catch that the code never would have? Then assign homework.
 
@@ -260,7 +260,7 @@ Goal: see what a hostile reviewer finds in code that already "works".
 
 ## Appendix: starter kit, verification status, sources
 
-**Starter kit (****public repo: github.com/techpeerPat/2026-DevFest-SDD-Worksho****p).** `data/customers.json` (six customers; C-1001 and C-1005 are overcharged), `data/kb.json` (four articles), `check_setup.py`, `install_skills.py`, `.env.example`, `requirements.txt`, `README.md`, `LICENSE`, `checkpoints/DESIGN.md` (fallback design doc). The working answer key is on the `answer-key` branch.
+**Starter kit (public repo: github.com/techpeerPat/2026-DevFest-SDD-Workshop).** `data/customers.json` (six customers; C-1001 and C-1005 are overcharged), `data/kb.json` (four articles), `check_setup.py`, `install_skills.py`, `.env.example`, `requirements.txt`, `README.md`, `LICENSE`, `checkpoints/DESIGN.md` (fallback design doc). The working answer key is on the `answer-key` branch.
 
 **Design doc format** produced by `/elephant-teach`: Problem, Technical Plan, Alternatives, Detailed Implementation, Evaluation Criteria, and optional Open Questions.
 
