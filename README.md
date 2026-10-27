@@ -40,13 +40,14 @@ agy --version
 # 5. The Elephant and Goldfish skills
 #    Downloads https://github.com/techpeerPat/elephant-goldfish-skills and copies the
 #    seven skills into .agents/skills/ (works on macOS, Linux and Windows; needs git)
-python install_skills.py
+python install_skills.py              # Antigravity (agy)
+# Using Claude Code instead?  python install_skills.py --agent claude
 
 # 6. Verify
 python check_setup.py
 ```
 
-Check the skills loaded: start `agy` from this folder and type `/ele`. You should see `/elephant-grow` and `/elephant-teach`.
+Skills install into this project folder only (`.agents/skills/` for agy, `.claude/skills/` for Claude Code), never globally. Check they loaded: start your agent from this folder and type `/ele`. You should see `/elephant-grow` and `/elephant-teach`.
 
 The first run of `agy` opens a browser to sign in with a Google account.
 
