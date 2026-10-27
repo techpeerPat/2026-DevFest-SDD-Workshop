@@ -37,12 +37,18 @@ except Exception:
     report(False, "google-adk importable", "Activate your venv, then: pip install google-adk")
 
 report(shutil.which("adk") is not None, "adk command on PATH", "Activate your venv; the adk command comes with google-adk.")
-report(shutil.which("agy") is not None, "agy (Antigravity CLI) on PATH", "Install from Google's Antigravity CLI page, open a NEW terminal, then run: agy --version")
+has_agent = shutil.which("agy") is not None or shutil.which("claude") is not None
+report(has_agent, "coding agent on PATH (agy or claude)", "Install the Antigravity CLI (agy) or Claude Code, open a NEW terminal, then run: agy --version")
 report(shutil.which("git") is not None, "git installed", "Install git.")
 SKILLS = ["elephant-grow", "elephant-teach", "goldfish-understand", "goldfish-critic", "goldfish-ready", "implement-design", "adversary-review"]
-skills_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".agents", "skills")
-missing = [s for s in SKILLS if not os.path.isfile(os.path.join(skills_dir, s, "SKILL.md"))]
-report(not missing, "7 Elephant/Goldfish skills in .agents/skills/" if not missing else f"skills installed (missing: {', '.join(missing)})", "Run: python install_skills.py")
+here = os.path.dirname(os.path.abspath(__file__))
+found = None
+for sub in (".agents", ".claude"):
+    d = os.path.join(here, sub, "skills")
+    if all(os.path.isfile(os.path.join(d, s, "SKILL.md")) for s in SKILLS):
+        found = f"{sub}/skills/"
+        break
+report(found is not None, f"7 Elephant/Goldfish skills in {found}" if found else "7 skills installed", "Run: python install_skills.py (Antigravity) or python install_skills.py --agent claude")
 report(bool(os.environ.get("GOOGLE_API_KEY")), "GOOGLE_API_KEY is set", "Copy .env.example to .env and paste your AI Studio key.")
 
 if "--no-model" not in sys.argv and os.environ.get("GOOGLE_API_KEY"):
