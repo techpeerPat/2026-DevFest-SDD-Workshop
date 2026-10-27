@@ -2,6 +2,8 @@
 
 Build a multi-agent support-triage system with Google ADK in 90 minutes, entirely on your laptop. A written spec comes first; the Elephant and Goldfish skills gate it before any code exists.
 
+One-page guide with setup, prompts and troubleshooting: https://techpeerpat.github.io/devfest-sdd-workshop-site/
+
 Agents, tools, data and the ADK web UI run locally. Model calls go to the free Gemini API, and the coding agent (Antigravity CLI, `agy`) needs internet.
 
 ## What is in this repo
