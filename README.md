@@ -51,6 +51,21 @@ Skills install into this project folder only (`.agents/skills/` for agy, `.claud
 
 The first run of `agy` opens a browser to sign in with a Google account.
 
+### Get a free Gemini API key (2 minutes, no credit card)
+
+1. Go to https://aistudio.google.com and sign in with a personal Google account. On the first visit, accept the terms and confirm your region. Work or school accounts may be restricted, so use a personal one if you can.
+2. Click **Get API key** in the left sidebar (or open https://aistudio.google.com/app/apikey).
+3. Click **Create API key**, then choose **Create key in new project**.
+4. Copy the key. It starts with `AIza`.
+5. Open `.env` in your project folder and paste it after `GOOGLE_API_KEY=`. Save the file.
+6. Never commit or share the key. `.env` is already in `.gitignore`.
+
+The free tier has per-minute and per-day limits that apply to the Google project, not the key. See your live limits at https://aistudio.google.com/rate-limit. Screens change, so if a button is named differently, look for "API keys".
+
+### Which coding agent: `agy` or Gemini CLI?
+
+Use the Antigravity CLI (`agy`). Google retired Gemini CLI for free and personal accounts on 18 June 2026 and replaced it with `agy`. Gemini CLI is reported to still work only with paid API keys and with Gemini Code Assist Standard or Enterprise licences, which is not the free setup this workshop uses. The skills are installed into `.agents/skills/`, which is where `agy` looks. Prefer Claude Code? Use `python install_skills.py --agent claude`.
+
 ### Pick one model for the coding agent
 
 `agy` can use more than one model. Run `/model` inside `agy`, choose one, and use that same model for all five labs, so results are comparable across the room. Which models appear, and how much free quota each has, depends on your account. Check before the day.
