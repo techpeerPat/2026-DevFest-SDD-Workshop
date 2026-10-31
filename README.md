@@ -16,6 +16,7 @@ Agents, tools, data and the ADK web UI run locally. Model calls go to the free G
 | `checkpoints/DESIGN.md` | Fallback design doc if a lab stalls. |
 | `tickets/` | Where escalation tickets are written. |
 | `docs/` | Workshop guide, organizer one-pager and slide outline. |
+| `slides/` | The workshop deck (PowerPoint, 26 slides, with speaker notes). |
 
 A working answer key lives on the `answer-key` branch. Please do not open it until after the workshop.
 
